@@ -24,6 +24,15 @@ export default new Vuex.Store({
     },
     setCurrentRoom (state, payload) {
       state.room = payload
+    },
+    updateScore (state, payload) {
+      if (state.room.user1 === payload.username) {
+        state.room.answers1 = payload.answers
+        state.room.mistakes1 = payload.mistakes
+      } else {
+        state.room.answers2 = payload.answers
+        state.room.mistakes2 = payload.mistakes
+      }
     }
   },
   actions: {
@@ -68,6 +77,9 @@ export default new Vuex.Store({
         .onSnapshot((doc) => {
           context.commit('setCurrentRoom', doc.data())
         })
+    },
+    finishGame (context, payload) {
+      context.commit('updateScore', payload)
     }
   },
   modules: {

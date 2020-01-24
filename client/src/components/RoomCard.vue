@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     joinRoom (id) {
-      console.log('yea')
+      localStorage.setItem('player', this.username2)
       this.$store.dispatch('joinRoom', { id, username: this.username2 })
       this.$refs['my-modal'].hide()
       this.username2 = ''
