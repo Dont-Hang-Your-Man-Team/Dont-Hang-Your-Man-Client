@@ -11,34 +11,25 @@
     </div>
     <div id='existing-lobbies'>
       <div class='header'><h3>Available Rooms</h3></div>
-      <div class='card' v-for="room in rooms" :key="room.id">
-        <div class='card-title'>
-          <h3>{{ room.user1 }}'s room</h3>
-          <form @submit.prevent="joinRoom(room.id)">
-            <input type='text' placeholder="Type your name..." v-model='username2'>
-            <b-button type='submit' variant="warning">Join Room</b-button>
-          </form>
-        </div>
-      </div>
+      <RoomCard  class='card' v-for="room in rooms" :key="room.id" :room="room"/>
     </div>
   </div>
 </template>
 
 <script>
+import RoomCard from '../components/RoomCard'
 export default {
   data () {
     return {
-      username: '',
-      username2: ''
+      username: ''
     }
+  },
+  components: {
+    RoomCard
   },
   methods: {
     createRoom () {
       this.$store.dispatch('createRoom', this.username)
-    },
-    joinRoom (id) {
-      console.log('yea')
-      this.$store.dispatch('joinRoom', { id, username: this.username2 })
     }
   },
   created () {
