@@ -4,6 +4,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
+      <router-link to="/about">About</router-link> |
+      <router-link to="/end">Game End</router-link>
     <router-view/>
   </div>
 </template>
