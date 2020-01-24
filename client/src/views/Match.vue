@@ -72,13 +72,16 @@ export default {
   methods: {
     checkLetter (letter) {
       this.chosenLetter.push(letter)
+      let match = false
       for (let i = 0; i < this.question.length; i++) {
         if (letter === this.question[i]) {
           this.answers.push(letter)
-        } else {
-          this.mistakes += 1
-          break
-        }
+          match = true
+
+        } 
+      }
+      if (match === false) {
+        this.mistakes += 1
       }
       this.letters[letter] = true
     }
