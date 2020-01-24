@@ -19,7 +19,7 @@
       <img v-if="mistakes === 4" src="@/assets/hangman5.png">
     </div>
     <div id="choices" class="col">
-      <b-button id="letterbutton" v-for="(letter, i) in letters" :key="i" variant="outline-primary" @click="checkLetter(letter)">{{letter}}</b-button>
+      <b-button id="letterbutton" v-for="(letter, i) in Object.keys(letters)" :key="i" variant="outline-primary" @click="checkLetter(letter)" :disabled="letters[letter]">{{letter}}</b-button>
     </div>
   </div>
 </div>
@@ -29,7 +29,34 @@
 export default {
   data () {
     return {
-      letters: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+      letters: {
+        a: false,
+        b: false,
+        c: false,
+        d: false,
+        e: false,
+        f: false,
+        g: false,
+        h: false,
+        i: false,
+        j: false,
+        k: false,
+        l: false,
+        m: false,
+        n: false,
+        o: false,
+        p: false,
+        q: false,
+        r: false,
+        s: false,
+        t: false,
+        u: false,
+        v: false,
+        w: false,
+        x: false,
+        y: false,
+        z: false
+      },
       images: [`@/assets/loneman.png`, '@/assets/hangman2(1).png', '@/assets/hangman_3.png', '@/assets_hangman4.png', '@/assets_hangman5.png'],
       mistakes: 0,
       question: 'eslint',
@@ -40,22 +67,23 @@ export default {
   computed: {
     image: function () {
       return this.images[this.mistakes]
-    },
+    }
   },
   methods: {
-    checkLetter(letter) {
+    checkLetter (letter) {
       this.chosenLetter.push(letter)
+      let match = false
       for (let i = 0; i < this.question.length; i++) {
         if (letter === this.question[i]) {
           this.answers.push(letter)
-        } else {
-          this.mistakes += 1
-          break
-        }
+          match = true
+
+        } 
       }
-      this.letters.filter(choice => {
-        choice != letter
-      })
+      if (match === false) {
+        this.mistakes += 1
+      }
+      this.letters[letter] = true
     }
   }
 }
