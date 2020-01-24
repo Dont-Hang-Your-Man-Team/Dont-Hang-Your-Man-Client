@@ -25,9 +25,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "endgame" */ '../views/EndGame.vue')
   },
   {
-    path: '/lobby',
+    path: '/lobby/:id',
     name: 'lobby',
-    component: () => import(/* webpackChunkName: "lobby" */ '../views/Lobby.vue')
+    component: () => import(/* webpackChunkName: "room" */ '../views/Lobby.vue')
   }
 ]
 

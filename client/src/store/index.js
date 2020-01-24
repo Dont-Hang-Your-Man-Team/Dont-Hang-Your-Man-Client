@@ -1,32 +1,45 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import db from '../config/firebase'
-
+import router from '../router/index.js'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     questions: ['eslint', 'jquery', 'sequelize', 'multer', 'socketio', 'vuetify', 'mongoose', 'mongodb', 'googlecloud', 'firebase', 'promise', 'callback', 'hooks'],
     rooms: [],
-    username: ''
+    user1: '',
+    user2: '',
+    room: {}
   },
   mutations: {
     pushRoom (state, payload) {
       state.rooms = payload
+    },
+    setUser2 (state, payload) {
+      state.user2 = payload
+    },
+    setUser1 (state, payload) {
+      state.user1 = payload
+    },
+    setCurrentRoom (state, payload) {
+      state.room = payload
     }
   },
   actions: {
     createRoom (context, payload) {
-      db.collection('rooms').add({
+      let newRoom = {
         user1: payload,
         user2: '',
         mistakes1: 0,
         mistakes2: 0,
         answers1: [],
         answers2: []
-      })
+      }
+      db.collection('rooms').add(newRoom)
         .then(data => {
-          context.commit('pushRoom', data)
+          // context.commit('pushRoom', newRoom)
+          router.push('/lobby/' + data.id)
         })
         .catch(err => {
           console.log(err)
@@ -48,6 +61,12 @@ export default new Vuex.Store({
       db.collection('rooms').doc(payload.id)
         .update({
           user2: payload.username
+        })
+    },
+    getRoom (context, payload) {
+      db.collection('rooms').doc(payload)
+        .onSnapshot((doc) => {
+          context.commit('setCurrentRoom', doc.data())
         })
     }
   },

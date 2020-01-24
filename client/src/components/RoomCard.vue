@@ -43,7 +43,7 @@ export default {
       this.username2 = ''
     },
     test () {
-      this.$router.push('/lobby')
+      this.$router.push('/lobby/' + this.room.id)
     }
   }
 }
