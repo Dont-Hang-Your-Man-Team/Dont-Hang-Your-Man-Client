@@ -29,11 +29,9 @@ export default {
   },
   methods: {
     createRoom () {
+      console.log('username di pregame', this.username)
       this.$store.dispatch('createRoom', this.username)
     }
-  },
-  created () {
-    this.$store.dispatch('getRooms')
   },
   computed: {
     rooms () {

@@ -7,12 +7,12 @@
       footer="DON'T HANG YOUR MAN"
       footer-tag="footer"
      :title="player1_name">
-      <b-card-text v-if="player2_name.length === 0">Awaiting your opponent </b-card-text>
+      <b-card-text v-if="!player2_name">Awaiting your opponent </b-card-text>
     </b-card>
     </div>
     <div class="col">
-      <img v-if="player2_name.length === 0" src="@/assets/mario.gif">
-      <img v-if="player2_name.length >= 1" @click="startGame" src="@/assets/startie.gif">
+      <img v-if="!player2_name" src="@/assets/mario.gif">
+      <img v-else @click="startGame" src="@/assets/startie.gif">
     </div>
     <div class="col">
       <b-card
@@ -21,7 +21,7 @@
       footer="DON'T HANG YOUR MAN"
       footer-tag="footer"
       :title="player2_name">
-      <b-card-text v-if="player2_name >= 1">Ready to start? Click Start Game to play</b-card-text>
+      <b-card-text v-if="player2_name">Ready to start? Click Start Game to play</b-card-text>
     </b-card>
     </div>
   </div>
@@ -29,16 +29,24 @@
 
 <script>
 export default {
-  data () {
-    return {
-      player1_name: this.$store.state.username || 'Gabriel',
-      player2_name: this.$store.state.username || 'Ganda'
+  computed: {
+    player1_name () {
+      return this.$store.state.room.user1
+    },
+    player2_name () {
+      return this.$store.state.room.user2
+    },
+    currentRoom () {
+      return this.$store.state.room
     }
   },
   methods: {
     startGame () {
       this.$router.push('/match')
     }
+  },
+  created: function () {
+    this.$store.dispatch('getRoom', this.$route.params.id)
   }
 }
 </script>
