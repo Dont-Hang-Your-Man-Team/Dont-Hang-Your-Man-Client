@@ -77,8 +77,7 @@ export default {
         if (letter === this.question[i]) {
           this.answers.push(letter)
           match = true
-
-        } 
+        }
       }
       if (match === false) {
         this.mistakes += 1
