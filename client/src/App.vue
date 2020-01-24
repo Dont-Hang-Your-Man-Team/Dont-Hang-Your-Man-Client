@@ -2,10 +2,15 @@
   <div id="app">
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
+<<<<<<< HEAD
+      <router-link to="/match">Match</router-link>
+    </div>
+=======
       <router-link to="/about">About</router-link>
     </div> -->
       <router-link to="/about">About</router-link> |
       <router-link to="/end">Game End</router-link>
+>>>>>>> development
     <router-view/>
   </div>
 </template>
@@ -17,6 +22,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-image: url("https://cameronscookware.com/wp-content/uploads/2019/12/graph-paper-wallpaper-best-of-1000-images-about-paper-refs-on-pinterest-2019-of-graph-paper-wallpaper.gif");
+
 }
 
 #nav {
