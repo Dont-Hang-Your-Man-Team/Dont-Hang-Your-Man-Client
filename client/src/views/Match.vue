@@ -12,7 +12,10 @@
   <br>
   <div class="row">
     <div class="col">
-      <img src="https://hangman.doncolton.com/play/hang0.png">
+      <!-- <img v-for="(image, i) in images" :key="i" :src="image"> -->
+      <img  src="@/assets/loneman.png">
+      <img  src="@/assets/loneman.png">
+      <img  src="@/assets/loneman.png">
     </div>
     <div id="choices" class="col">
       <b-button id="letterbutton" v-for="(letter, i) in letters" :key="i" variant="outline-primary">{{letter}}</b-button>
@@ -25,7 +28,8 @@
 export default {
   data () {
     return {
-      letters: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+      letters: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+      images: ['@/assets/loneman.png', '@/assets/hangman2(1).png', '@/assets/hangman_3.png', '@/assets_hangman4.png', '@/assets_hangman5.png']
     }
   }
 }
