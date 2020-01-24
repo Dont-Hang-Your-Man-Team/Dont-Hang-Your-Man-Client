@@ -1,9 +1,16 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
+<<<<<<< HEAD
       <router-link to="/match">Match</router-link>
     </div>
+=======
+      <router-link to="/about">About</router-link>
+    </div> -->
+      <router-link to="/about">About</router-link> |
+      <router-link to="/end">Game End</router-link>
+>>>>>>> development
     <router-view/>
   </div>
 </template>
