@@ -23,6 +23,11 @@ const routes = [
     path: '/end',
     name: 'game end',
     component: () => import(/* webpackChunkName: "endgame" */ '../views/EndGame.vue')
+  },
+  {
+    path: '/lobby',
+    name: 'lobby',
+    component: () => import(/* webpackChunkName: "lobby" */ '../views/Lobby.vue')
   }
 ]
 
