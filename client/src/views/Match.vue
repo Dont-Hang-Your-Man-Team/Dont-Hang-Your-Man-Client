@@ -53,6 +53,9 @@ export default {
           break
         }
       }
+      this.letters.filter(choice => {
+        choice != letter
+      })
     }
   }
 }
