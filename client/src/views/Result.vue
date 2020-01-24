@@ -1,18 +1,21 @@
 <template>
-  <div id="lobbycase" class="row">
+  <div id="resultbox" class="row">
     <div class="col">
       <b-card
       header="Player 1"
       header-tag="header"
       footer="DON'T HANG YOUR MAN"
       footer-tag="footer"
-     :title="player1_name">
-      <b-card-text v-if="!player2_name">Awaiting your opponent </b-card-text>
+     :title="player1">
     </b-card>
     </div>
     <div class="col">
-      <img v-if="!player2_name" src="@/assets/mario.gif">
-      <img v-else @click="startGame" src="@/assets/startie.gif">
+      {{ winner }}
+      {{ answers1 }}
+      {{ answers2 }}
+      <!-- <img v-if="!winner" src="@/assets/waiting.gif">
+      <p v-else-if="winner !== 'tie'">{{winner}}</p>
+      <p v-else>It's a tie!</p> -->
     </div>
     <div class="col">
       <b-card
@@ -20,39 +23,50 @@
       header-tag="header"
       footer="DON'T HANG YOUR MAN"
       footer-tag="footer"
-      :title="player2_name">
-      <b-card-text v-if="player2_name">Ready to start? Click Start Game to play</b-card-text>
+      :title="player2">
     </b-card>
     </div>
+    <!-- <audio src="@/assets/yaysound.mp3" autoplay></audio> -->
   </div>
 </template>
 
 <script>
 export default {
-  computed: {
-    player1_name () {
-      return this.$store.state.room.user1
-    },
-    player2_name () {
-      return this.$store.state.room.user2
-    },
-    currentRoom () {
-      return this.$store.state.room
+  name: 'result',
+  data () {
+    return {
+      displayScore: false
     }
   },
-  methods: {
-    startGame () {
-      this.$router.push('/match')
+  computed: {
+    winner () {
+      return this.$store.getters.isDone
+    },
+    player1 () {
+      return this.$store.state.room.user1
+    },
+    player2 () {
+      return this.$store.state.room.user2
+    },
+    answers1 () {
+      return this.$store.state.room.answers1
+    },
+    answers2 () {
+      return this.$store.state.room.answers2
     }
   },
   created: function () {
-    this.$store.dispatch('getRoom', this.$route.params.id)
+    if (!this.winner) {
+      this.displayScore = false
+    } else {
+      this.displayScore = true
+    }
   }
 }
 </script>
 
 <style scoped>
-#lobbycase {
-  margin-top: 5em;
+#resultbox {
+    margin-top: 5em;
 }
 </style>
