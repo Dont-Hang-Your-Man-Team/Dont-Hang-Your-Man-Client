@@ -69,6 +69,9 @@ export default {
   computed: {
     image: function () {
       return this.images[this.mistakes]
+    },
+    currentRoom () {
+      return this.$store.state.room
     }
   },
   methods: {
@@ -99,6 +102,28 @@ export default {
       slots.push('__')
     }
     this.answerSlot = slots
+  },
+  watch: {
+    mistakes: function () {
+      if (this.mistakes === 4) {
+        this.$store.dispatch('finishGame', {
+          username: localStorage.getItem('player'),
+          answers: this.answers,
+          mistakes: this.mistakes
+        })
+        this.$router.push('/result')
+      }
+    },
+    answers: function () {
+      if (this.answers.length === this.question.length) {
+        this.$store.dispatch('finishGame', {
+          username: localStorage.getItem('player'),
+          answers: this.answers,
+          mistakes: this.mistakes
+        })
+        this.$router.push('/result')
+      }
+    }
   }
 }
 </script>

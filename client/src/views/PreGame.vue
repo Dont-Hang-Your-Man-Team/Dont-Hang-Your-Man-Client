@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     createRoom () {
-      console.log('username di pregame', this.username)
+      localStorage.setItem('player', this.username)
       this.$store.dispatch('createRoom', this.username)
     }
   },
