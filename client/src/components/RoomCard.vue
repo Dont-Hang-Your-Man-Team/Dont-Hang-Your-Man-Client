@@ -43,7 +43,7 @@ export default {
       this.username2 = ''
     },
     test () {
-      this.$router.push('/match')
+      this.$router.push('/lobby')
     }
   }
 }
