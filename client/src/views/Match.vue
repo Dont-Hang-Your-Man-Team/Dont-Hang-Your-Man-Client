@@ -5,7 +5,8 @@
       <b-button pill variant="warning">hints</b-button>
     </div>
     <div id="questions" class="col">
-       <a v-for="(letter, i) in question.split('')" :key="i">_ </a>
+       <!-- <a v-for="(letter, i) in question.split('')" :key="i">_ </a> -->
+       <p>{{ answerSlot.join(' ') }}</p>
     </div>
   </div>
   <br>
@@ -59,7 +60,8 @@ export default {
       },
       images: [`@/assets/loneman.png`, '@/assets/hangman2(1).png', '@/assets/hangman_3.png', '@/assets_hangman4.png', '@/assets_hangman5.png'],
       mistakes: 0,
-      question: 'eslint',
+      question: this.$store.state.questions[Math.floor(Math.random() * this.$store.state.questions.length)],
+      answerSlot: null,
       answers: [],
       chosenLetter: []
     }
@@ -77,14 +79,26 @@ export default {
         if (letter === this.question[i]) {
           this.answers.push(letter)
           match = true
-
-        } 
+        }
       }
       if (match === false) {
         this.mistakes += 1
+      } else {
+        for (let i = 0; i < this.question.length; i++) {
+          if (this.question[i] === letter) {
+            this.answerSlot[i] = letter
+          }
+        }
       }
       this.letters[letter] = true
     }
+  },
+  created () {
+    let slots = []
+    for (let i = 0; i < this.question.length; i++) {
+      slots.push('__')
+    }
+    this.answerSlot = slots
   }
 }
 </script>
