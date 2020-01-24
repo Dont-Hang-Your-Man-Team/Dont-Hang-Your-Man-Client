@@ -12,17 +12,22 @@ const routes = [
     component: PreGame
   },
   {
-    path: '/about',
-    name: 'about',
+    path: '/match',
+    name: 'match',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "" */ '../views/Match.vue')
   },
   {
     path: '/end',
     name: 'game end',
     component: () => import(/* webpackChunkName: "endgame" */ '../views/EndGame.vue')
+  },
+  {
+    path: '/lobby',
+    name: 'lobby',
+    component: () => import(/* webpackChunkName: "lobby" */ '../views/Lobby.vue')
   }
 ]
 

@@ -6,7 +6,7 @@
        <button type='submit'>Join Room</button>
     </form> -->
     <div>
-      <b-button @click="$bvModal.show(room.id)">Join</b-button>
+      <b-button @click="$bvModal.show(room.id)" class="bg-warning">Join</b-button>
 
       <b-modal
         :id="room.id"
@@ -14,11 +14,12 @@
         ref="my-modal"
         hide-footer
         >
-
+        <div class="text-center">
         <form @submit.prevent="joinRoom(room.id)">
-          <input type="text" placeholder="Input Your Username Here" v-model="username2">
-          <button type="submit">Enter</button>
-        </form>
+            <input type='text' placeholder="Type your name..." v-model='username2'> <br/>
+            <b-button type='submit' variant="warning" class="mt-3" @click="test">Join Room</b-button>
+          </form>
+        </div>
     </b-modal>
   </div>
   </div>
@@ -40,10 +41,19 @@ export default {
       this.$store.dispatch('joinRoom', { id, username: this.username2 })
       this.$refs['my-modal'].hide()
       this.username2 = ''
+    },
+    test () {
+      this.$router.push('/match')
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+/* div {
+  margin: auto;
+} */
+form {
+  margin-right: auto;
+}
 </style>
