@@ -2,7 +2,7 @@
   <div id='home'>
     <h1>D O N T  H A N G  Y O U R  M A N</h1>
     <div class='content'>
-      <form @submit.prevent="">
+      <form @submit.prevent="createRoom">
         <input type='text' v-model="username"/>
         <button type='submit'>Create New Game</button>
         <!-- <button type='submit'>Join a Game</button> -->
