@@ -28,6 +28,11 @@ const routes = [
     path: '/lobby/:id',
     name: 'lobby',
     component: () => import(/* webpackChunkName: "room" */ '../views/Lobby.vue')
+  },
+  {
+    path: '/result',
+    name: 'result',
+    component: () => import(/* webpackChunkName: "room" */ '../views/Result.vue')
   }
 ]
 
